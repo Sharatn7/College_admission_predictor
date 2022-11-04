@@ -22,47 +22,62 @@
         </div>
     </div>
     <div class="d-flex justify-content-center align-items-center" style="padding-bottom:0px">
-        <form>
+        <form action="/predict" method="post">
             <div class="row">
                 <div class="form-group col">
                     <label for="gre">GRE Score</label>
-                    <input type="number" class="form-control" id="gre" placeholder="GRE Score" />
+                    <input type="number" class="form-control" id="gre" name="gre" placeholder="GRE Score" />
                 </div>
                 <div class="form-group col">
                     <label for="toefl">TOEFL Score</label>
-                    <input type="number" class="form-control" id="toefl" placeholder="TOEFL Score" />
+                    <input type="number" class="form-control" id="toefl" name="toefl" placeholder="TOEFL Score" />
                 </div>
                 <div class="form-group col">
                     <label for="cgpa">CGPA</label>
-                    <input type="number" class="form-control" id="cgpa" placeholder="CGPA" />
+                    <input type="number" class="form-control" id="cgpa" name="cgpa" placeholder="CGPA" step="any" />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="sop">SOP</label>
-                    <input type="number" class="form-control" id="sop" placeholder="SOP" />
+                    <input type="number" class="form-control" id="sop" name="sop" placeholder="SOP" step="any" />
                 </div>
                 <div class="form-group col">
                     <label for="lor">LOR</label>
-                    <input type="number" class="form-control" id="lor" placeholder="LOR" />
+                    <input type="number" class="form-control" id="lor" name="lor" placeholder="LOR" step="any" />
                 </div>
                 <div class="form-group col">
-                    <label for="research">Research</label>
-                    <input type="number" class="form-control" id="research" placeholder="Research" />
+                    <span>Research</span>
+                    <div class="form-check">
+                        <input class="form-check-input" name="research" type="radio" value="1" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="research" type="radio" value="0" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="form-group col">
                 <label for="univ">UNIVERSTY</label>
-                <input class="form-control" list="datalistOptions" id="univ" placeholder="Type to search...">
+                <input type="number" name="univ" placeholder="University Rating" required="required" min="1" max="5" />
+
+                <!-- <input class="form-control" list="datalistOptions" name="univ" id="univ" placeholder="Type to search...">
                 <datalist id="datalistOptions">
                     {% for university in universities %}
                     <option value="{{university}}">
                     {%endfor%}
-                </datalist>
+                </datalist> -->
             </div>
             <button type="submit" class="btn" style="background-color: cyan;">Submit</button>
         </form>
     </div>
+    <span class="h-2 text-center">{{prediction_text}}</span>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
