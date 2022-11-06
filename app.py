@@ -7,24 +7,27 @@ app = Flask(__name__)
 
 model=pickle.load(open('model.pkl','rb'))
 
+column=pd.read_csv("qs-world-university-rankings-2017-to-2022-V2.csv")
+universities=column['university'].unique()
+
 
 @app.route('/')
 def index():
-    column=pd.read_csv("qs-world-university-rankings-2017-to-2022-V2.csv")
-    universities=column['university'].unique()
     return render_template("home.html",universities=sorted(universities))
 
-@app.route('/predict', methods=['GET','post'])
+@app.route('/', methods=['GET','post'])
 def predict():
 	GRE_Score = int(request.form['gre'])
 	TOEFL_Score = int(request.form['toefl'])
-	University_Rating = int(request.form['univ'])
+	University= request.form['univ']
 	SOP = float(request.form['sop'])
 	LOR = float(request.form['lor'])
 	CGPA = float(request.form['cgpa'])
 	Research = int(request.form['research'])
-	
-    # column=pd.read_csv("qs-world-university-rankings-2017-to-2022-V2.csv")
+	print(Research)
+	result = column.loc[column['university'] == University].iloc[0]
+	University_Rating = int(result['score'])//20
+
 
 	final_features = pd.DataFrame([[GRE_Score, TOEFL_Score, University_Rating, SOP, LOR, CGPA, Research]])
 	
@@ -32,7 +35,7 @@ def predict():
 	
 	output = predict[0]
         
-	return render_template('home.html', prediction_text='Admission chances are {}'.format(output))
+	return render_template('home.html', prediction_text='Admission chances are {}'.format(output),universities=sorted(universities))
 
     # if output<str(0.5):
     #     return render_template('home.html',pred='Your chances are low.\nProbability of you getting admission is {}'.format(output))
