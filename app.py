@@ -14,7 +14,7 @@ universities=column['university'].unique()
 def index():
     return render_template("home.html",universities=sorted(universities))
 
-@app.route('/', methods=['GET','post'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
 
 	# form data

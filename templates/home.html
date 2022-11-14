@@ -28,12 +28,12 @@
 
   <!-- form begin -->
   <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 0px">
-    <form action="/" method="post">
+    <form action="{{url_for('predict')}}" method="post">
       <div class="row">
         <div class="form-group col">
           <label for="gre">GRE Score</label>
           <input type="number" class="form-control" id="gre" name="gre" placeholder="GRE Score" />
-          <small class="text-muted">Out of 320</small>
+          <small class="text-muted">Out of 340</small>
         </div>
         <div class="form-group col">
           <label for="toefl">TOEFL Score</label>
@@ -50,12 +50,12 @@
         <div class="form-group col">
           <label for="sop">SOP</label>
           <input type="number" class="form-control" id="sop" name="sop" placeholder="SOP" step="any" />
-          <small class="text-muted">Out of 4</small>
+          <small class="text-muted">Out of 5</small>
         </div>
         <div class="form-group col">
           <label for="lor">LOR</label>
           <input type="number" class="form-control" id="lor" name="lor" placeholder="LOR" step="any" />
-          <small class="text-muted">Out of 4</small>
+          <small class="text-muted">Out of 5</small>
         </div>
         <div class="form-group col">
           <span>Research</span>
